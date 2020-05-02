@@ -10,8 +10,7 @@ import lombok.Data;
 public class gtt_cargos {
 
     @Id
-    private String ID_ANCO;
-    @org.springframework.lang.NonNull
+    private String ID_ANCO;    
     private String ID_PADRE_IMPO;
     private String ID_FIJU;
     private String REF_EXTERNA;
