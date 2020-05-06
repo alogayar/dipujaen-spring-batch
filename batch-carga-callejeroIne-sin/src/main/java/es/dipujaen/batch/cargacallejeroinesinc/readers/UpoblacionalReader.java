@@ -5,8 +5,8 @@ import java.text.SimpleDateFormat;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.batch.core.ItemReadListener;
 import org.springframework.batch.core.configuration.annotation.StepScope;
-import org.springframework.batch.item.ItemReader;
 import org.springframework.batch.item.file.FlatFileItemReader;
 import org.springframework.batch.item.file.LineMapper;
 import org.springframework.batch.item.file.mapping.DefaultLineMapper;
@@ -21,11 +21,11 @@ import org.springframework.stereotype.Component;
 import org.springframework.validation.BindException;
 
 import es.dipujaen.batch.cargacallejeroinesinc.models.Upoblacional;
-import lombok.Data;
 
-@Data
+
+
 @Component
-public class UpoblacionalReader {
+public class UpoblacionalReader  {
 	
 	private static final Logger log = LoggerFactory.getLogger(UpoblacionalReader.class);
 	static int counter = 0;
@@ -120,7 +120,8 @@ public class UpoblacionalReader {
 				upoblacional.setNombreNucleoDise50(fieldSet.readString("Nnucle50"));
 				upoblacional.setNombreNucleoDiseCorto(fieldSet.readString("Nnuclec"));
 
-				 log.info("** MAPPEANDO U.POBLACIONAL: " + fieldSet);
+				 log.info("PROCESANDO..... U.POBLACIONAL: {} ", fieldSet.readString("Dmun50"));
+				 
 
 				return upoblacional;
 			}

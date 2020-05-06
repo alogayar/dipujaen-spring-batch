@@ -31,11 +31,11 @@ public class DemoApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		log.info("PASO DE PARAMETROS={}}", args[0]);
+		log.info("-> SE INICIA EL BATCH CON LOS SIGUIENTES PARAMETROS={}}", args[0]);				
 		JobParameters params = new JobParametersBuilder().addString("FilePath", args[0]).toJobParameters();
 		jobLauncher.run(job, params);
 
-		log.info("PASO DE PARAMETROS={} y {}}", args[0]);
+		
 	}
 
 }

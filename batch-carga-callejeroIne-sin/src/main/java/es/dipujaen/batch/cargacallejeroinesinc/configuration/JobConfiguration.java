@@ -26,6 +26,9 @@ public class JobConfiguration {
     @Autowired
     public FlatFileItemReader<Upoblacional> reader;
     
+    @Autowired
+    public StepCompletionListener steplistener;
+    
 
     @Bean
     public Job job(final JobCompletionNotificationListener listener) {
@@ -41,26 +44,13 @@ public class JobConfiguration {
         return stepBuilderFactory.get("step1")
         .<Upoblacional, Upoblacional>chunk(1)
         .reader(reader)
-        .writer(writer())
-//        .processor(new ItemProcessor<Persona, Persona>() {
-//
-//                    @Override
-//                    public Persona process(final Persona item) throws Exception {
-//                        final Persona persona = new Persona(item.getId().toUpperCase(), item.getNombre().toUpperCase());
-//                        
-//						return persona;
-//                    }})
-//                .writer(writer())
-               
-                .build();
-    }
-
-        
+        .listener(steplistener)
+        .writer(writer())                       
+        .build();
+    }        
    
     @Bean
-    public UpoblacionalWriter writer(){
-        //System.out.println("PARAMETROS1 WRITER" + param1);
-       //System.out.println("PARAMETROS2 WRITER" + param2.toString());
+    public UpoblacionalWriter writer(){        
         return new UpoblacionalWriter(); 
     }   
     
